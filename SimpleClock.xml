@@ -1,0 +1,23 @@
+<GuiXml>
+	<Controls>
+		<TopLevelControl name="SimpleClock" mouseEnabled="true" movable="true">
+
+			<Dimensions x="100" y="20" />
+
+			<OnUpdate>
+				updateLocalTime()
+			</OnUpdate>
+
+			<OnMoveStop>
+				saveClockPosition()
+			</OnMoveStop>
+
+			<Controls>
+				<Label scale="0.8" name="$(parent)LocalTime" font="ZoFontWindowTitle" color="FFFFFF" wrapMode="ELLIPSIS" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+					<AnchorFill />
+				</Label>
+			</Controls>
+
+		</TopLevelControl>
+	</Controls>
+</GuiXml>

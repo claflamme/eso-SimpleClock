@@ -1,0 +1,7 @@
+## Title: SimpleClock
+## APIVersion: 100000
+## SavedVariables: SimpleClock_SavedVariables
+## Version: 0.0.0
+
+SimpleClock.lua
+SimpleClock.xml
