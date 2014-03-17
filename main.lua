@@ -1,23 +1,27 @@
+sc = {}
+sc.menu = LibStub:GetLibrary("LibAddonMenu-1.0")
+
 --- Main config settings
-local config = {
+config = {
 	name = "SimpleClock",
 	svName = "SimpleClock_SavedVariables",
 	svDefaults = {
 		offsetX = 0,
-		offsetY = 0
+		offsetY = 0,
+		scale = 1.0
 	}
 }
 
 --- Saved Variables table
-local sv = {}
+sv = {}
 
 --- Updates the local time clock.
 function updateLocalTime()
-	SimpleClockLocalTime:SetText(getTimeString())
+	SimpleClockLocalLabel:SetText(getTimeString())
 end
 
 --- Updates the saved variables for the clock's position.
-function saveClockPosition()
+function savePositions()
 
 	local x, y = SimpleClock:GetCenter()
 
@@ -52,9 +56,13 @@ function loadSavedVariables()
 
 	local x = sv.LocalTime.offsetX
 	local y = sv.LocalTime.offsetY
+	local scale = sv.LocalTime.scale
 
 	SimpleClock:SetAnchor(CENTER, GuiRoot, TOPLEFT, x, y)
-	SimpleClock:SetClampedToScreen(true)
+	SimpleClock:SetScale(scale)
+
+	-- Allow the clock to go outside the screen's boundaries
+	SimpleClock:SetClampedToScreen(false)
 
 end
 

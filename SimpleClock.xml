@@ -9,11 +9,11 @@
 			</OnUpdate>
 
 			<OnMoveStop>
-				saveClockPosition()
+				savePositions()
 			</OnMoveStop>
 
 			<Controls>
-				<Label scale="0.8" name="$(parent)LocalTime" font="ZoFontWindowTitle" color="FFFFFF" wrapMode="ELLIPSIS" verticalAlignment="CENTER" horizontalAlignment="CENTER">
+				<Label scale="1.0" name="$(parent)LocalLabel" font="ZoFontWindowTitle" color="FFFFFF" wrapMode="TRUNCATE" verticalAlignment="CENTER" horizontalAlignment="CENTER">
 					<AnchorFill />
 				</Label>
 			</Controls>
