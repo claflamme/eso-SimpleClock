@@ -2,7 +2,7 @@
 	<Controls>
 		<TopLevelControl name="SimpleClock" mouseEnabled="true" movable="true">
 
-			<Dimensions x="100" y="20" />
+			<Dimensions x="120" y="20" />
 
 			<OnUpdate>
 				updateLocalTime()
