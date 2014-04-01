@@ -8,5 +8,5 @@ SimpleClock.xml
 lib/LibStub.lua
 lib/LibAddonMenu-1.0.lua
 Main.lua
-Menu.lua
 Interface.lua
+Menu.lua

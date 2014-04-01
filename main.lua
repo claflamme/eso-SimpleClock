@@ -15,14 +15,15 @@ sc.config = {
 	name = 'SimpleClock',
 	svName = 'SimpleClock_SavedVariables',
 	svDefaults = {
-		offsetX = 0,
-		offsetY = 0,
+		offsetX = 150,
+		offsetY = 50,
 		scale = 1.0,
 		use24Hour = false,
 		lowercaseMeridiem = false,
 		noDotsMeridiem = false,
 		hideMeridiem = false,
-		hideWithOverlay = false
+		hideWithOverlay = false,
+		textAlign = 'Center'
 	}
 }
 
