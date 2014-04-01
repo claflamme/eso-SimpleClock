@@ -66,7 +66,14 @@ end
 sc.menu:AddHeader(sc.menuId, "scHeaderVisibility", "Visibility")
 
 -- Hide with overlay
-sc.menu:AddCheckbox(sc.menuId, 'scConfigChkbox_HideWithOverlay', 'Hide when viewing menus', 'Hides the clock when viewing inventory or similar screens.', getHideWithOverlay, toggleHideWithOverlay, false, '')
+sc.menu:AddCheckbox(
+	sc.menuId,
+	'scConfigChkbox_HideWithOverlay',
+	'Hide when viewing menus',
+	'Hides the clock when viewing inventory or similar screens.',
+	getHideWithOverlay,
+	toggleHideWithOverlay
+)
 
 -- -----------------------------------------------------------------------------
 -- 24 hour display
@@ -74,7 +81,14 @@ sc.menu:AddCheckbox(sc.menuId, 'scConfigChkbox_HideWithOverlay', 'Hide when view
 sc.menu:AddHeader(sc.menuId, "scHeader24Hour", "24 Hour Display")
 
 -- Time Format dropdown (24hr vs. 12hr)
-sc.menu:AddCheckbox(sc.menuId, 'scConfigChkbox_24HourTime', '24 Hour (Military) Time', 'Choose whether to use 24hr time (00:30) or 12hr time (12:30AM).', getUse24Hour, toggleUse24Hour, false, '')
+sc.menu:AddCheckbox(
+	sc.menuId,
+	'scConfigChkbox_24HourTime',
+	'24 Hour (Military) Time',
+	'Choose whether to use 24hr time (00:30) or 12hr time (12:30AM).',
+	getUse24Hour,
+	toggleUse24Hour
+)
 
 -- -----------------------------------------------------------------------------
 -- Meridiem indicators
@@ -82,10 +96,31 @@ sc.menu:AddCheckbox(sc.menuId, 'scConfigChkbox_24HourTime', '24 Hour (Military) 
 sc.menu:AddHeader(sc.menuId, "scHeaderMeridiem", "Meridiem Indicators")
 
 -- Show/Hide meridiem
-sc.menu:AddCheckbox(sc.menuId, 'scConfigChkbox_VisibleMeridiem', 'Hidden', 'Hide AM/PM text.', getHideMeridiem, toggleHideMeridiem, false, '')
+sc.menu:AddCheckbox(
+	sc.menuId,
+	'scConfigChkbox_VisibleMeridiem',
+	'Hidden',
+	'Hide AM/PM text.',
+	getHideMeridiem,
+	toggleHideMeridiem
+)
 
 -- Use lowercase AM/PM
-sc.menu:AddCheckbox(sc.menuId, 'scConfigChkbox_LowercaseMeridiem', 'Lowercase', 'Have the AM/PM text display in lowercase.', getLowercaseMeridiem, toggleLowercaseMeridiem, false, '')
+sc.menu:AddCheckbox(
+	sc.menuId,
+	'scConfigChkbox_LowercaseMeridiem',
+	'Lowercase',
+	'Have the AM/PM text display in lowercase.',
+	getLowercaseMeridiem,
+	toggleLowercaseMeridiem
+)
 
 -- Hide dots in AM/PM
-sc.menu:AddCheckbox(sc.menuId, 'scConfigChkbox_NoDotsMeridiem', 'No Dots', 'Hide the dots in A.M./P.M.', getNoDotsMeridiem, toggleNoDotsMeridiem, false, '')
+sc.menu:AddCheckbox(
+	sc.menuId,
+	'scConfigChkbox_NoDotsMeridiem',
+	'No Dots',
+	'Hide the dots in A.M./P.M.',
+	getNoDotsMeridiem,
+	toggleNoDotsMeridiem
+)
