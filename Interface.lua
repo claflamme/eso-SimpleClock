@@ -4,17 +4,17 @@ sc.ui = {
 
 function sc.ui:create()
 
-	self.localClock = CreateControlFromVirtual('SimpleClockLocal', GuiRoot, 'SimpleClockLocal')
+	self.clock = CreateControlFromVirtual('SimpleClock', GuiRoot, 'SimpleClock')
 
 	local x = sc.sv.offsetX
 	local y = sc.sv.offsetY
 	local scale = sc.sv.scale
 
-	self.localClock:SetAnchor(CENTER, GuiRoot, TOPLEFT, x, y)
-	self.localClock:SetScale(scale)
+	self.clock:SetAnchor(CENTER, GuiRoot, TOPLEFT, x, y)
+	self.clock:SetScale(scale)
 
 	-- Allow the clock to go outside the screen's boundaries
-	self.localClock:SetClampedToScreen(false)
+	self.clock:SetClampedToScreen(false)
 
 	-- Load the text alignment setting
 	sc.ui:setTextAlign(sc.sv.textAlign)
@@ -50,11 +50,15 @@ function sc.ui:toggleHideWithOverlay()
 end
 
 function sc.ui:setTextAlign(val)
+
 	local alignMap = {
 		Left   = TEXT_ALIGN_LEFT,
 		Right  = TEXT_ALIGN_RIGHT,
 		Center = TEXT_ALIGN_CENTER
 	}
-	SimpleClockLocalLabel:SetHorizontalAlignment(alignMap[val])
+
+	SimpleClockLabel:SetHorizontalAlignment(alignMap[val])
+
 	sc.sv.textAlign = val
+
 end

@@ -56,9 +56,9 @@ end
 function sc:updateLocalTime(ignoreBuffer)
 
 	if (sc.sv.hideWithOverlay == true) and ZO_Compass:IsHidden() then
-		SimpleClockLocal:SetAlpha(0)
+		SimpleClock:SetAlpha(0)
 	else
-		SimpleClockLocal:SetAlpha(1)
+		SimpleClock:SetAlpha(1)
 	end
 
 	-- Add a one second buffer for updates, otherwise we'd be running this
@@ -67,14 +67,14 @@ function sc:updateLocalTime(ignoreBuffer)
 		return
 	end
 
-	SimpleClockLocalLabel:SetText(self:getTimeString())
+	SimpleClockLabel:SetText(self:getTimeString())
 
 end
 
 --- Updates the saved variables for the clock's position.
 function sc:savePositions()
 
-	local x, y = SimpleClockLocal:GetCenter()
+	local x, y = SimpleClock:GetCenter()
 
 	sc.sv.offsetX = x
 	sc.sv.offsetY = y

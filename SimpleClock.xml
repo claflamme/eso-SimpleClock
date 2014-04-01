@@ -1,6 +1,6 @@
 <GuiXml>
 	<Controls>
-		<TopLevelControl name="SimpleClockLocal" mouseEnabled="true" movable="true" virtual="true">
+		<TopLevelControl name="SimpleClock" mouseEnabled="true" movable="true" virtual="true">
 
 			<Dimensions x="120" y="20" />
 
