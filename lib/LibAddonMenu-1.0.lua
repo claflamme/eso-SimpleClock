@@ -153,7 +153,6 @@ function lam:AddCheckbox(panelID, controlName, text, tooltip, getFunc, setFunc, 
 			checkboxButton:toggleFunction(getFunc())
 		end)
 	ZO_PreHookHandler(checkboxButton, "OnClicked", function() setFunc(not getFunc()) end)
-	
 	if warning then
 		checkbox.warning = wm:CreateControlFromVirtual(controlName.."WarningIcon", checkbox, "ZO_Options_WarningIcon")
 		checkbox.warning:SetAnchor(RIGHT, checkboxButton, LEFT, -5, 0)
