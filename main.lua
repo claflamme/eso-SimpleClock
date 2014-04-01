@@ -4,13 +4,16 @@ sc = {}
 --- Saved Variables table
 sc.sv = {}
 
+--- Table for event buffer
+sc.bufferTable = {}
+
 --- Control panel menu
-sc.menu = LibStub:GetLibrary("LibAddonMenu-1.0")
+sc.menu = LibStub:GetLibrary('LibAddonMenu-1.0')
 
 --- Main config settings
 sc.config = {
-	name = "SimpleClock",
-	svName = "SimpleClock_SavedVariables",
+	name = 'SimpleClock',
+	svName = 'SimpleClock_SavedVariables',
 	svDefaults = {
 		offsetX = 0,
 		offsetY = 0,
@@ -22,9 +25,6 @@ sc.config = {
 		hideWithOverlay = false
 	}
 }
-
---- Table for event buffers
-sc.bufferTable = {}
 
 --- Basic event buffering, cribbed from http://wiki.esoui.com/Event_%26_Update_Buffering
 function sc:bufferReached(key, buffer)
@@ -115,9 +115,7 @@ end
 
 --- Loads settings from saved variables.
 function sc:loadSavedVariables()
-
-	sc.sv = ZO_SavedVars:NewAccountWide(sc.config.svName, 1, "SimpleClock", sc.config.svDefaults)
-
+	sc.sv = ZO_SavedVars:NewAccountWide(sc.config.svName, 1, 'SimpleClock', sc.config.svDefaults)
 end
 
 --- Handler for AddonLoaded event
@@ -128,6 +126,7 @@ function OnAddonLoaded(eventCode, name)
 		sc:loadSavedVariables()
 		sc.ui:create()
 	end
+
 end
 
 -- Set up some events

@@ -1,4 +1,4 @@
-sc.menuId = sc.menu:CreateControlPanel("scConfig", "SimpleClock")
+sc.menuId = sc.menu:CreateControlPanel('scConfig', 'SimpleClock')
 
 -- -----------------------------------------------------------------------------
 -- 24 hour time format
@@ -63,7 +63,7 @@ end
 -- -----------------------------------------------------------------------------
 -- Visibility
 -- -----------------------------------------------------------------------------
-sc.menu:AddHeader(sc.menuId, "scHeaderVisibility", "Visibility")
+sc.menu:AddHeader(sc.menuId, 'scHeaderVisibility', 'Visibility')
 
 -- Hide with overlay
 sc.menu:AddCheckbox(
@@ -78,7 +78,7 @@ sc.menu:AddCheckbox(
 -- -----------------------------------------------------------------------------
 -- 24 hour display
 -- -----------------------------------------------------------------------------
-sc.menu:AddHeader(sc.menuId, "scHeader24Hour", "24 Hour Display")
+sc.menu:AddHeader(sc.menuId, 'scHeader24Hour', '24 Hour Display')
 
 -- Time Format dropdown (24hr vs. 12hr)
 sc.menu:AddCheckbox(
@@ -93,7 +93,7 @@ sc.menu:AddCheckbox(
 -- -----------------------------------------------------------------------------
 -- Meridiem indicators
 -- -----------------------------------------------------------------------------
-sc.menu:AddHeader(sc.menuId, "scHeaderMeridiem", "Meridiem Indicators")
+sc.menu:AddHeader(sc.menuId, 'scHeaderMeridiem', 'Meridiem Indicators')
 
 -- Show/Hide meridiem
 sc.menu:AddCheckbox(
