@@ -4,27 +4,28 @@ sc = {}
 --- Saved Variables table
 sc.sv = {}
 
+--- Table for event buffer
+sc.bufferTable = {}
+
 --- Control panel menu
-sc.menu = LibStub:GetLibrary("LibAddonMenu-1.0")
+sc.menu = LibStub:GetLibrary('LibAddonMenu-1.0')
 
 --- Main config settings
 sc.config = {
-	name = "SimpleClock",
-	svName = "SimpleClock_SavedVariables",
+	name = 'SimpleClock',
+	svName = 'SimpleClock_SavedVariables',
 	svDefaults = {
-		offsetX = 0,
-		offsetY = 0,
+		offsetX = 150,
+		offsetY = 50,
 		scale = 1.0,
 		use24Hour = false,
 		lowercaseMeridiem = false,
-		noDotsMeridiem = true,
-		hideMeridiem = true,
-		hideWithOverlay = false
+		noDotsMeridiem = false,
+		hideMeridiem = false,
+		hideWithOverlay = false,
+		textAlign = 'Center'
 	}
 }
-
---- Table for event buffers
-sc.bufferTable = {}
 
 --- Basic event buffering, cribbed from http://wiki.esoui.com/Event_%26_Update_Buffering
 function sc:bufferReached(key, buffer)
@@ -54,10 +55,10 @@ end
 --- Updates the local time clock.
 function sc:updateLocalTime(ignoreBuffer)
 
-	if (sc.sv.LocalTime.hideWithOverlay == true) and ZO_Compass:IsHidden() then
-		SimpleClockLocal:SetAlpha(0)
+	if (sc.sv.hideWithOverlay == true) and ZO_Compass:IsHidden() then
+		SimpleClock:SetAlpha(0)
 	else
-		SimpleClockLocal:SetAlpha(1)
+		SimpleClock:SetAlpha(1)
 	end
 
 	-- Add a one second buffer for updates, otherwise we'd be running this
@@ -66,17 +67,17 @@ function sc:updateLocalTime(ignoreBuffer)
 		return
 	end
 
-	SimpleClockLocalLabel:SetText(self:getTimeString())
+	SimpleClockLabel:SetText(self:getTimeString())
 
 end
 
 --- Updates the saved variables for the clock's position.
 function sc:savePositions()
 
-	local x, y = SimpleClockLocal:GetCenter()
+	local x, y = SimpleClock:GetCenter()
 
-	sc.sv.LocalTime.offsetX = x
-	sc.sv.LocalTime.offsetY = y
+	sc.sv.offsetX = x
+	sc.sv.offsetY = y
 
 end
 
@@ -91,21 +92,21 @@ function sc:getTimeString()
 
 	local formatted
 
-	if (sc.sv.LocalTime.use24Hour) then
+	if (sc.sv.use24Hour) then
 		precision = TIME_FORMAT_PRECISION_TWENTY_FOUR_HOUR
 	end
 
 	formatted = FormatTimeSeconds(seconds, style, precision, direction)
 
-	if (sc.sv.LocalTime.hideMeridiem) then
+	if (sc.sv.hideMeridiem) then
 		return formatted:gsub('%a%.', '')
 	end
 
-	if (sc.sv.LocalTime.lowercaseMeridiem) then
+	if (sc.sv.lowercaseMeridiem) then
 		formatted = formatted:lower();
 	end
 
-	if (sc.sv.LocalTime.noDotsMeridiem) then
+	if (sc.sv.noDotsMeridiem) then
 		formatted = formatted:gsub('%.', '')
 	end
 
@@ -115,11 +116,7 @@ end
 
 --- Loads settings from saved variables.
 function sc:loadSavedVariables()
-
-	sc.sv = {
-		LocalTime = ZO_SavedVars:NewAccountWide(sc.config.svName, 1, "LocalTime", sc.config.svDefaults)
-	}
-
+	sc.sv = ZO_SavedVars:NewAccountWide(sc.config.svName, 1, 'SimpleClock', sc.config.svDefaults)
 end
 
 --- Handler for AddonLoaded event
@@ -130,6 +127,7 @@ function OnAddonLoaded(eventCode, name)
 		sc:loadSavedVariables()
 		sc.ui:create()
 	end
+
 end
 
 -- Set up some events
