@@ -17,8 +17,8 @@ sc.config = {
 		scale = 1.0,
 		use24Hour = false,
 		lowercaseMeridiem = false,
-		noDotsMeridiem = true,
-		hideMeridiem = true,
+		noDotsMeridiem = false,
+		hideMeridiem = false,
 		hideWithOverlay = false
 	}
 }
@@ -54,7 +54,7 @@ end
 --- Updates the local time clock.
 function sc:updateLocalTime(ignoreBuffer)
 
-	if (sc.sv.LocalTime.hideWithOverlay == true) and ZO_Compass:IsHidden() then
+	if (sc.sv.hideWithOverlay == true) and ZO_Compass:IsHidden() then
 		SimpleClockLocal:SetAlpha(0)
 	else
 		SimpleClockLocal:SetAlpha(1)
@@ -75,8 +75,8 @@ function sc:savePositions()
 
 	local x, y = SimpleClockLocal:GetCenter()
 
-	sc.sv.LocalTime.offsetX = x
-	sc.sv.LocalTime.offsetY = y
+	sc.sv.offsetX = x
+	sc.sv.offsetY = y
 
 end
 
@@ -91,21 +91,21 @@ function sc:getTimeString()
 
 	local formatted
 
-	if (sc.sv.LocalTime.use24Hour) then
+	if (sc.sv.use24Hour) then
 		precision = TIME_FORMAT_PRECISION_TWENTY_FOUR_HOUR
 	end
 
 	formatted = FormatTimeSeconds(seconds, style, precision, direction)
 
-	if (sc.sv.LocalTime.hideMeridiem) then
+	if (sc.sv.hideMeridiem) then
 		return formatted:gsub('%a%.', '')
 	end
 
-	if (sc.sv.LocalTime.lowercaseMeridiem) then
+	if (sc.sv.lowercaseMeridiem) then
 		formatted = formatted:lower();
 	end
 
-	if (sc.sv.LocalTime.noDotsMeridiem) then
+	if (sc.sv.noDotsMeridiem) then
 		formatted = formatted:gsub('%.', '')
 	end
 
@@ -116,9 +116,7 @@ end
 --- Loads settings from saved variables.
 function sc:loadSavedVariables()
 
-	sc.sv = {
-		LocalTime = ZO_SavedVars:NewAccountWide(sc.config.svName, 1, "LocalTime", sc.config.svDefaults)
-	}
+	sc.sv = ZO_SavedVars:NewAccountWide(sc.config.svName, 1, "SimpleClock", sc.config.svDefaults)
 
 end
 

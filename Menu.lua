@@ -4,60 +4,60 @@ sc.menuId = sc.menu:CreateControlPanel("scConfig", "SimpleClock")
 -- 24 hour time format
 -- -----------------------------------------------------------------------------
 function toggleUse24Hour(val)
-	sc.sv.LocalTime.use24Hour = not sc.sv.LocalTime.use24Hour
+	sc.sv.use24Hour = not sc.sv.use24Hour
 	sc:updateLocalTime(true)
 end
 
 function getUse24Hour()
-	return sc.sv.LocalTime.use24Hour
+	return sc.sv.use24Hour
 end
 
 -- -----------------------------------------------------------------------------
 -- Lowercase meridiem indicator
 -- -----------------------------------------------------------------------------
 function toggleLowercaseMeridiem(val)
-	sc.sv.LocalTime.lowercaseMeridiem = not sc.sv.LocalTime.lowercaseMeridiem
+	sc.sv.lowercaseMeridiem = not sc.sv.lowercaseMeridiem
 	sc:updateLocalTime(true)
 end
 
 function getLowercaseMeridiem()
-	return sc.sv.LocalTime.lowercaseMeridiem
+	return sc.sv.lowercaseMeridiem
 end
 
 -- -----------------------------------------------------------------------------
 -- Visible meridiem indicator
 -- -----------------------------------------------------------------------------
 function toggleHideMeridiem(val)
-	sc.sv.LocalTime.hideMeridiem = not sc.sv.LocalTime.hideMeridiem
+	sc.sv.hideMeridiem = not sc.sv.hideMeridiem
 	sc:updateLocalTime(true)
 end
 
 function getHideMeridiem()
-	return sc.sv.LocalTime.hideMeridiem
+	return sc.sv.hideMeridiem
 end
 
 -- -----------------------------------------------------------------------------
 -- Meridiem dots
 -- -----------------------------------------------------------------------------
 function toggleNoDotsMeridiem(val)
-	sc.sv.LocalTime.noDotsMeridiem = not sc.sv.LocalTime.noDotsMeridiem
+	sc.sv.noDotsMeridiem = not sc.sv.noDotsMeridiem
 	sc:updateLocalTime(true)
 end
 
 function getNoDotsMeridiem()
-	return sc.sv.LocalTime.noDotsMeridiem
+	return sc.sv.noDotsMeridiem
 end
 
 -- -----------------------------------------------------------------------------
 -- Hide with overlay
 -- -----------------------------------------------------------------------------
 function toggleHideWithOverlay(val)
-	sc.sv.LocalTime.hideWithOverlay = not sc.sv.LocalTime.hideWithOverlay
+	sc.sv.hideWithOverlay = not sc.sv.hideWithOverlay
 	sc:updateLocalTime(true)
 end
 
 function getHideWithOverlay()
-	return sc.sv.LocalTime.hideWithOverlay
+	return sc.sv.hideWithOverlay
 end
 
 -- -----------------------------------------------------------------------------
