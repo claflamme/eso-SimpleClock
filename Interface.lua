@@ -24,6 +24,17 @@ function sc.ui:create()
 
 end
 
+function sc.ui:show()
+	SimpleClock:SetAlpha(1)
+end
+
+function sc.ui:hide()
+	SimpleClock:SetAlpha(0)
+end
+
+-- -----------------------------------------------------------------------------
+-- Toggles for control panel options
+-- =============================================================================
 function sc.ui:toggleUse24Hour()
 	sc.sv.use24Hour = not sc.sv.use24Hour
 	sc:updateLocalTime(true)
@@ -44,9 +55,19 @@ function sc.ui:toggleNoDotsMeridiem()
 	sc:updateLocalTime(true)
 end
 
+---
+-- Toggles whether or not to hide the clock when in viewing screens like
+-- inventory, conversation, settings, main menu, etc.
 function sc.ui:toggleHideWithOverlay()
+
 	sc.sv.hideWithOverlay = not sc.sv.hideWithOverlay
-	sc:updateLocalTime(true)
+
+	if (sc.sv.hideWithOverlay == true) then
+		sc.ui:hide()
+	else
+		sc.ui:show()
+	end
+
 end
 
 function sc.ui:setTextAlign(val)
@@ -60,5 +81,22 @@ function sc.ui:setTextAlign(val)
 	SimpleClockLabel:SetHorizontalAlignment(alignMap[val])
 
 	sc.sv.textAlign = val
+
+end
+
+function sc.ui:setFont()
+
+	local fontPath = LMP:Fetch('font', sc.sv.font.family)
+	local fontString = string.format('%s|%u|%s', fontPath, sc.sv.font.size, sc.sv.font.style)
+
+	SimpleClockLabel:SetFont(fontString)
+
+end
+
+function sc.ui:setFontFamily(val)
+
+	sc.sv.font.family = val
+
+	sc.ui.setFont()
 
 end

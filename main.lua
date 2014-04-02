@@ -1,14 +1,11 @@
 --- Global to contain the whole addon
 sc = {}
 
---- Saved Variables table
-sc.sv = {}
-
---- Table for event buffer
-sc.bufferTable = {}
+sc.events, sc.sv, sc.bufferTable = {}, {}, {}
 
 --- Control panel menu
 sc.menu = LibStub:GetLibrary('LibAddonMenu-1.0')
+LMP = LibStub:GetLibrary("LibMediaProvider-1.0")
 
 --- Main config settings
 sc.config = {
@@ -23,7 +20,12 @@ sc.config = {
 		noDotsMeridiem = false,
 		hideMeridiem = false,
 		hideWithOverlay = false,
-		textAlign = 'Center'
+		textAlign = 'Center',
+		font = {
+			family = 'Univers 67',
+			size = 16,
+			style = 'soft-shadow-thin'
+		}
 	}
 }
 

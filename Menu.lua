@@ -74,5 +74,21 @@ sc.menu:AddDropdown(
 	{'Left', 'Right', 'Center'},
 	function() return sc.sv.textAlign end,
 	function(val) sc.ui:setTextAlign(val) end
-
 )
+
+-- -----------------------------------------------------------------------------
+-- Font
+-- -----------------------------------------------------------------------------
+sc.menu:AddHeader(sc.menuId, 'scHeaderFont', 'Font')
+
+-- Font family
+sc.menu:AddDropdown(
+	sc.menuId,
+	'scConfigDrpdwn_Font',
+	'Family',
+	'The font family used to display the clock.',
+	LMP:List('font'),
+	function() return sc.sv.font.family end,
+	function(val) sc.ui:setFontFamily(val) end
+)
+
