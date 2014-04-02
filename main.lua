@@ -114,3 +114,17 @@ end
 function sc:loadSavedVariables()
 	sc.sv = ZO_SavedVars:NewAccountWide(sc.config.svName, 1, 'SimpleClock', sc.config.svDefaults)
 end
+
+function table.keys(table)
+
+	local keys = {}
+	local n = 0
+
+	for key in pairs(table) do
+		keys[n] = key
+		n = n + 1
+	end
+
+	return keys
+
+end

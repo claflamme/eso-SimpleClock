@@ -1,5 +1,13 @@
 sc.ui = {
 	wm = GetWindowManager(),
+	styles = {
+		['Normal']              = 'normal',
+		['Outline']             = 'outline',
+		['Thick outline']       = 'thick-outline',
+		['Shadow']              = 'shadow',
+		['Soft shadow - thick'] = 'soft-shadow-thick',
+		['Soft shadow - thin']  = 'soft-shadow-thin'
+	}
 }
 
 function sc.ui:create()
@@ -121,5 +129,10 @@ end
 
 function sc.ui:setFontSize(val)
 	sc.sv.font.size = val
+	sc.ui:setLabel()
+end
+
+function sc.ui:setFontStyle(val)
+	sc.sv.font.style = sc.ui.styles[val]
 	sc.ui:setLabel()
 end
