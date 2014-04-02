@@ -13,7 +13,7 @@
 			</OnMoveStop>
 
 			<Controls>
-				<Label scale="1.0" name="$(parent)Label" font="ZoFontWindowTitle" color="FFFFFF" wrapMode="TRUNCATE" verticalAlignment="CENTER">
+				<Label scale="1.0" name="$(parent)Label" color="FFFFFF" wrapMode="TRUNCATE" verticalAlignment="CENTER">
 					<AnchorFill />
 				</Label>
 			</Controls>

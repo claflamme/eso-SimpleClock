@@ -19,6 +19,8 @@ function sc.ui:create()
 	-- Load the text alignment setting
 	sc.ui:setTextAlign(sc.sv.textAlign)
 
+	SimpleClockLabel:SetFont(sc.ui:getFontString())
+
 	-- Immediately update the time display
 	sc:updateLocalTime(true)
 
@@ -84,19 +86,16 @@ function sc.ui:setTextAlign(val)
 
 end
 
-function sc.ui:setFont()
+function sc.ui:getFontString()
 
 	local fontPath = LMP:Fetch('font', sc.sv.font.family)
 	local fontString = string.format('%s|%u|%s', fontPath, sc.sv.font.size, sc.sv.font.style)
 
-	SimpleClockLabel:SetFont(fontString)
+	return fontString
 
 end
 
 function sc.ui:setFontFamily(val)
-
 	sc.sv.font.family = val
-
-	sc.ui.setFont()
-
+	SimpleClockLabel:SetFont(sc.ui:getFontString())
 end
