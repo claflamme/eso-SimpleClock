@@ -55,12 +55,6 @@ end
 --- Updates the local time clock.
 function sc:updateLocalTime(ignoreBuffer)
 
-	if (sc.sv.hideWithOverlay == true) and ZO_Compass:IsHidden() then
-		SimpleClock:SetAlpha(0)
-	else
-		SimpleClock:SetAlpha(1)
-	end
-
 	-- Add a one second buffer for updates, otherwise we'd be running this
 	-- literally every frame refresh.
 	if ignoreBuffer ~= true and not self:bufferReached('clockUpdateBuffer', 1) then
@@ -118,17 +112,3 @@ end
 function sc:loadSavedVariables()
 	sc.sv = ZO_SavedVars:NewAccountWide(sc.config.svName, 1, 'SimpleClock', sc.config.svDefaults)
 end
-
---- Handler for AddonLoaded event
-function OnAddonLoaded(eventCode, name)
-
-	if (name == sc.config.name) then
-		EVENT_MANAGER:UnregisterForEvent(sc.config.name, eventCode)
-		sc:loadSavedVariables()
-		sc.ui:create()
-	end
-
-end
-
--- Set up some events
-EVENT_MANAGER:RegisterForEvent(sc.config.name, EVENT_ADD_ON_LOADED, OnAddonLoaded)
