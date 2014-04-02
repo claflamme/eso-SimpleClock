@@ -105,13 +105,13 @@ sc.menu:AddSlider(
 	function(val) sc.ui:setFontSize(val) end
 )
 
--- Font family
+-- Font style
 sc.menu:AddDropdown(
 	sc.menuId,
 	'scConfigDrpdwn_FontStyle',
 	'Style',
 	'Additional borders and shadows for the text.',
-	table.keys(sc.ui.styles),
+	sc.ui.styles,
 	function() return sc.sv.font.style end,
 	function(val) sc.ui:setFontStyle(val) end
 )
