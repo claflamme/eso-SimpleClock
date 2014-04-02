@@ -19,10 +19,7 @@ function sc.ui:create()
 	-- Load the text alignment setting
 	sc.ui:setTextAlign(sc.sv.textAlign)
 
-	SimpleClockLabel:SetFont(sc.ui:getFontString())
-
-	-- Immediately update the time display
-	sc:updateLocalTime(true)
+	sc.ui:setLabel()
 
 end
 
@@ -39,22 +36,22 @@ end
 -- =============================================================================
 function sc.ui:toggleUse24Hour()
 	sc.sv.use24Hour = not sc.sv.use24Hour
-	sc:updateLocalTime(true)
+	sc.ui:setLabel()
 end
 
 function sc.ui:toggleLowercaseMeridiem()
 	sc.sv.lowercaseMeridiem = not sc.sv.lowercaseMeridiem
-	sc:updateLocalTime(true)
+	sc.ui:setLabel()
 end
 
 function sc.ui:toggleHideMeridiem()
 	sc.sv.hideMeridiem = not sc.sv.hideMeridiem
-	sc:updateLocalTime(true)
+	sc.ui:setLabel()
 end
 
 function sc.ui:toggleNoDotsMeridiem()
 	sc.sv.noDotsMeridiem = not sc.sv.noDotsMeridiem
-	sc:updateLocalTime(true)
+	sc.ui:setLabel()
 end
 
 ---
@@ -95,7 +92,34 @@ function sc.ui:getFontString()
 
 end
 
+function sc.ui:setLabel()
+
+	-- Need to make sure any formatting changes have been done to the text.
+	sc:updateLocalTime(true)
+
+	-- Update the label's font, and then...
+	SimpleClockLabel:SetFont(sc.ui:getFontString())
+
+	-- Need to reset dimensions to 0 (unlimited) otherwise the text could get
+	-- truncated if the previous font size's bounding box was smaller. Then,
+	-- when we want to use the TextDimensions, the width would be smaller since
+	-- it was broken up in to separate lines! Computers, pfeh.
+	self.clock:SetDimensions(0, 0)
+
+	-- NOW set the TopLevelControl to the new dimensions.
+	self.clock:SetDimensions(SimpleClockLabel:GetTextDimensions())
+
+	-- Force an update so we don't have to wait for the event buffer
+	sc:updateLocalTime(true)
+
+end
+
 function sc.ui:setFontFamily(val)
 	sc.sv.font.family = val
-	SimpleClockLabel:SetFont(sc.ui:getFontString())
+	sc.ui:setLabel()
+end
+
+function sc.ui:setFontSize(val)
+	sc.sv.font.size = val
+	sc.ui:setLabel()
 end

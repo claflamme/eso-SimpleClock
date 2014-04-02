@@ -2,8 +2,6 @@
 	<Controls>
 		<TopLevelControl name="SimpleClock" mouseEnabled="true" movable="true" virtual="true">
 
-			<Dimensions x="120" y="20" />
-
 			<OnUpdate>
 				sc:updateLocalTime()
 			</OnUpdate>
@@ -13,6 +11,7 @@
 			</OnMoveStop>
 
 			<Controls>
+				<!--<Backdrop name="$(parent)BG" inherits="ZO_ThinBackdrop" />-->
 				<Label scale="1.0" name="$(parent)Label" color="FFFFFF" wrapMode="TRUNCATE" verticalAlignment="CENTER">
 					<AnchorFill />
 				</Label>

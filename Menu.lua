@@ -84,7 +84,7 @@ sc.menu:AddHeader(sc.menuId, 'scHeaderFont', 'Font')
 -- Font family
 sc.menu:AddDropdown(
 	sc.menuId,
-	'scConfigDrpdwn_Font',
+	'scConfigDrpdwn_FontFamily',
 	'Family',
 	'The font family used to display the clock.',
 	LMP:List('font'),
@@ -92,3 +92,15 @@ sc.menu:AddDropdown(
 	function(val) sc.ui:setFontFamily(val) end
 )
 
+-- Font size
+sc.menu:AddSlider(
+	sc.menuId,
+	'scConfigDrpdwn_FontSize',
+	'Size',
+	'The size of the font use for the clock.',
+	12,
+	48,
+	1,
+	function() return sc.sv.font.size end,
+	function(val) sc.ui:setFontSize(val) end
+)
