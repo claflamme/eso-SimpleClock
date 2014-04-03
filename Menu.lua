@@ -127,13 +127,5 @@ function buildControlPanel()
 		function() return sc.sv.font.color.r, sc.sv.font.color.g, sc.sv.font.color.b, sc.sv.font.color.a end,
 		function(r, g, b, a) sc.ui:setFontColor(r, g, b, a) end
 	)
-		 --panelID = integer; the reference returned by LAM:CreateControlPanel() above
-		 --controlName = string; a unique name for this object
-		 --text = string; the text to display for this option
-		 --tooltip = string; the tooltip text
-		 --getFunc = function; a function to return the current values (r, g, b[, a]) this option is set to
-		 --setFunc = function; a function to save the new value this option is set to - passes through 4 arguments, the new values (integer)
-		 --warning = boolean; display a warning icon for this option
-		 --warningText = string; the tooltip text to display for the warning icon
 
 end
