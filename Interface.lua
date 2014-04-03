@@ -102,12 +102,23 @@ end
 
 ---
 -- Applies any custom settings to the clock's label control.
-function sc.ui:updateLabel()
+function sc.ui:updateLabel(buffered)
+
+	if ((sc.sv.hideWithOverlay == true) and ZO_Compass:IsHidden()) then
+		sc.ui.hide()
+	else
+		sc.ui.show()
+	end
+
+	if buffered == true and not sc:bufferReached('clockUpdateBuffer', 1) then
+		return
+	end
+
+	d(math.random())
+
+	SimpleClockLabel:SetText(sc:getTimeString())
 
 	local color = sc.sv.font.color
-
-	-- Need to make sure any formatting changes have been done to the text.
-	sc:updateLocalTime(true)
 
 	-- Update the label's font and colour, and then...
 	SimpleClockLabel:SetFont(sc.ui:getFontString())
@@ -121,9 +132,6 @@ function sc.ui:updateLabel()
 
 	-- NOW set the TopLevelControl to the new dimensions.
 	self.clock:SetDimensions(SimpleClockLabel:GetTextDimensions())
-
-	-- Force an update so we don't have to wait for the event buffer
-	sc:updateLocalTime(true)
 
 end
 

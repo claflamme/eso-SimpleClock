@@ -55,23 +55,6 @@ function sc:bufferReached(key, buffer)
 
 end
 
---- Updates the local time clock.
-function sc:updateLocalTime(ignoreBuffer)
-
-	if ((sc.sv.hideWithOverlay == true) and ZO_Compass:IsHidden()) then
-		sc.ui.hide()
-	else
-		sc.ui.show()
-	end
-
-	if ignoreBuffer ~= true and not self:bufferReached('clockUpdateBuffer', 1) then
-		return
-	end
-
-	SimpleClockLabel:SetText(self:getTimeString())
-
-end
-
 --- Updates the saved variables for the clock's position.
 function sc:savePositions()
 
