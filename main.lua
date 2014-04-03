@@ -58,8 +58,12 @@ end
 --- Updates the local time clock.
 function sc:updateLocalTime(ignoreBuffer)
 
-	-- Add a one second buffer for updates, otherwise we'd be running this
-	-- literally every frame refresh.
+	if ((sc.sv.hideWithOverlay == true) and ZO_Compass:IsHidden()) then
+		sc.ui.hide()
+	else
+		sc.ui.show()
+	end
+
 	if ignoreBuffer ~= true and not self:bufferReached('clockUpdateBuffer', 1) then
 		return
 	end
