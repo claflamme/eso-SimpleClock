@@ -16,6 +16,17 @@
 -- -----------------------------------------------------------------------------
 sc = { events = {},	sv = {}, buffer = {}, config = {}, defaults = {} }
 
+---
+-- Main config settings.
+--
+-- @field  name    Name of the addon, mostly for generating controls.
+-- @field  svName  Name to use for saving/loading SavedVariables.
+-- -----------------------------------------------------------------------------
+sc.config = {
+	name   = 'SimpleClock',
+	svName = 'SimpleClock_SavedVariables'
+}
+
 sc.defaults = {
 	offsetX = 150,
 	offsetY = 50,
@@ -43,11 +54,7 @@ sc.defaults = {
 LAM = LibStub:GetLibrary('LibAddonMenu-1.0')
 LMP = LibStub:GetLibrary("LibMediaProvider-1.0")
 
---- Main config settings
-sc.config = {
-	name = 'SimpleClock',
-	svName = 'SimpleClock_SavedVariables'
-}
+
 
 --- Basic event buffering, cribbed from http://wiki.esoui.com/Event_%26_Update_Buffering
 function sc:bufferReached(key, buffer)
