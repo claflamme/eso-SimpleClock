@@ -114,8 +114,6 @@ function sc.ui:updateLabel(buffered)
 		return
 	end
 
-	d(math.random())
-
 	SimpleClockLabel:SetText(sc:getTimeString())
 
 	local color = sc.sv.font.color
