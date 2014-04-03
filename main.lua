@@ -1,14 +1,11 @@
 --- Global to contain the whole addon
 sc = {}
 
---- Saved Variables table
-sc.sv = {}
-
---- Table for event buffer
-sc.bufferTable = {}
+sc.events, sc.sv, sc.bufferTable = {}, {}, {}
 
 --- Control panel menu
 sc.menu = LibStub:GetLibrary('LibAddonMenu-1.0')
+LMP = LibStub:GetLibrary("LibMediaProvider-1.0")
 
 --- Main config settings
 sc.config = {
@@ -23,7 +20,13 @@ sc.config = {
 		noDotsMeridiem = false,
 		hideMeridiem = false,
 		hideWithOverlay = false,
-		textAlign = 'Center'
+		textAlign = 'Center',
+		font = {
+			family = 'Univers 67',
+			size = 20,
+			style = 'soft-shadow-thin',
+			color = {r = 1, g = 1, b = 1, a = 1}
+		}
 	}
 }
 
@@ -55,14 +58,12 @@ end
 --- Updates the local time clock.
 function sc:updateLocalTime(ignoreBuffer)
 
-	if (sc.sv.hideWithOverlay == true) and ZO_Compass:IsHidden() then
-		SimpleClock:SetAlpha(0)
+	if ((sc.sv.hideWithOverlay == true) and ZO_Compass:IsHidden()) then
+		sc.ui.hide()
 	else
-		SimpleClock:SetAlpha(1)
+		sc.ui.show()
 	end
 
-	-- Add a one second buffer for updates, otherwise we'd be running this
-	-- literally every frame refresh.
 	if ignoreBuffer ~= true and not self:bufferReached('clockUpdateBuffer', 1) then
 		return
 	end
@@ -118,17 +119,3 @@ end
 function sc:loadSavedVariables()
 	sc.sv = ZO_SavedVars:NewAccountWide(sc.config.svName, 1, 'SimpleClock', sc.config.svDefaults)
 end
-
---- Handler for AddonLoaded event
-function OnAddonLoaded(eventCode, name)
-
-	if (name == sc.config.name) then
-		EVENT_MANAGER:UnregisterForEvent(sc.config.name, eventCode)
-		sc:loadSavedVariables()
-		sc.ui:create()
-	end
-
-end
-
--- Set up some events
-EVENT_MANAGER:RegisterForEvent(sc.config.name, EVENT_ADD_ON_LOADED, OnAddonLoaded)
