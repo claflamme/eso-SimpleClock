@@ -1,7 +1,43 @@
---- Global to contain the whole addon
-sc = {}
+-- =============================================================================
+-- Addon Initialization
+-- -----------------------------------------------------------------------------
+-- Bootstrapping happens in Events.lua, in the EVENT_ADD_ON_LOADED function.
+-- =============================================================================
 
-sc.events, sc.sv, sc.bufferTable = {}, {}, {}
+---
+-- Main namespace for the addon.
+--
+-- @field  events    Contains event handler functions named after the events
+--                   they respond to.
+-- @field  sv        Saved variables get stored here once they're loaded.
+-- @field  buffer    Event buffer table.
+-- @field  config    Reusable config data for scripts.
+-- @field  defaults  Default SavedVariables settings.
+-- -----------------------------------------------------------------------------
+sc = { events = {},	sv = {}, buffer = {}, config = {}, defaults = {} }
+
+sc.defaults = {
+	offsetX = 150,
+	offsetY = 50,
+	scale = 1.0,
+	use24Hour = false,
+	lowercaseMeridiem = false,
+	noDotsMeridiem = false,
+	hideMeridiem = false,
+	hideWithOverlay = false,
+	textAlign = 'Center',
+	font = {
+		family = 'Univers 67',
+		size = 20,
+		style = 'soft-shadow-thin',
+		color = {
+			r = 1,
+			g = 1,
+			b = 1,
+			a = 1
+		}
+	}
+}
 
 --- Control panel menu
 LAM = LibStub:GetLibrary('LibAddonMenu-1.0')
@@ -10,48 +46,31 @@ LMP = LibStub:GetLibrary("LibMediaProvider-1.0")
 --- Main config settings
 sc.config = {
 	name = 'SimpleClock',
-	svName = 'SimpleClock_SavedVariables',
-	svDefaults = {
-		offsetX = 150,
-		offsetY = 50,
-		scale = 1.0,
-		use24Hour = false,
-		lowercaseMeridiem = false,
-		noDotsMeridiem = false,
-		hideMeridiem = false,
-		hideWithOverlay = false,
-		textAlign = 'Center',
-		font = {
-			family = 'Univers 67',
-			size = 20,
-			style = 'soft-shadow-thin',
-			color = {r = 1, g = 1, b = 1, a = 1}
-		}
-	}
+	svName = 'SimpleClock_SavedVariables'
 }
 
 --- Basic event buffering, cribbed from http://wiki.esoui.com/Event_%26_Update_Buffering
 function sc:bufferReached(key, buffer)
 
-	if sc.bufferTable[key] == nil then
-		sc.bufferTable[key] = {}
+	if sc.buffer[key] == nil then
+		sc.buffer[key] = {}
 	end
 
-	sc.bufferTable[key].buffer = buffer or 1
-	sc.bufferTable[key].now = GetFrameTimeSeconds()
+	sc.buffer[key].buffer = buffer or 1
+	sc.buffer[key].now = GetFrameTimeSeconds()
 
-	if sc.bufferTable[key].last == nil then
-		sc.bufferTable[key].last = sc.bufferTable[key].now
+	if sc.buffer[key].last == nil then
+		sc.buffer[key].last = sc.buffer[key].now
 	end
 
-	sc.bufferTable[key].diff = sc.bufferTable[key].now - sc.bufferTable[key].last
-	sc.bufferTable[key].eval = sc.bufferTable[key].diff >= sc.bufferTable[key].buffer
+	sc.buffer[key].diff = sc.buffer[key].now - sc.buffer[key].last
+	sc.buffer[key].eval = sc.buffer[key].diff >= sc.buffer[key].buffer
 
-	if sc.bufferTable[key].eval then
-		sc.bufferTable[key].last = sc.bufferTable[key].now
+	if sc.buffer[key].eval then
+		sc.buffer[key].last = sc.buffer[key].now
 	end
 
-	return sc.bufferTable[key].eval
+	return sc.buffer[key].eval
 
 end
 
@@ -100,5 +119,5 @@ end
 
 --- Loads settings from saved variables.
 function sc:loadSavedVariables()
-	sc.sv = ZO_SavedVars:NewAccountWide(sc.config.svName, 1, 'SimpleClock', sc.config.svDefaults)
+	sc.sv = ZO_SavedVars:NewAccountWide(sc.config.svName, 1, 'SimpleClock', sc.defaults)
 end
