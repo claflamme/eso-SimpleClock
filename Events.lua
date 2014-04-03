@@ -9,6 +9,7 @@ sc.events.EVENT_ADD_ON_LOADED = function(eventCode, addonName)
 		EVENT_MANAGER:UnregisterForEvent(sc.config.name, eventCode)
 		sc:loadSavedVariables()
 		sc.ui:create()
+		buildControlPanel()
 	end
 
 end

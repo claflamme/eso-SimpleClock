@@ -27,7 +27,7 @@ function sc.ui:create()
 	-- Load the text alignment setting
 	sc.ui:setTextAlign(sc.sv.textAlign)
 
-	sc.ui:setLabel()
+	sc.ui:updateLabel()
 
 end
 
@@ -44,22 +44,22 @@ end
 -- =============================================================================
 function sc.ui:toggleUse24Hour()
 	sc.sv.use24Hour = not sc.sv.use24Hour
-	sc.ui:setLabel()
+	sc.ui:updateLabel()
 end
 
 function sc.ui:toggleLowercaseMeridiem()
 	sc.sv.lowercaseMeridiem = not sc.sv.lowercaseMeridiem
-	sc.ui:setLabel()
+	sc.ui:updateLabel()
 end
 
 function sc.ui:toggleHideMeridiem()
 	sc.sv.hideMeridiem = not sc.sv.hideMeridiem
-	sc.ui:setLabel()
+	sc.ui:updateLabel()
 end
 
 function sc.ui:toggleNoDotsMeridiem()
 	sc.sv.noDotsMeridiem = not sc.sv.noDotsMeridiem
-	sc.ui:setLabel()
+	sc.ui:updateLabel()
 end
 
 ---
@@ -100,13 +100,18 @@ function sc.ui:getFontString()
 
 end
 
-function sc.ui:setLabel()
+---
+-- Applies any custom settings to the clock's label control.
+function sc.ui:updateLabel()
+
+	local color = sc.sv.font.color
 
 	-- Need to make sure any formatting changes have been done to the text.
 	sc:updateLocalTime(true)
 
-	-- Update the label's font, and then...
+	-- Update the label's font and colour, and then...
 	SimpleClockLabel:SetFont(sc.ui:getFontString())
+	SimpleClockLabel:SetColor(color.r, color.g, color.b, color.a)
 
 	-- Need to reset dimensions to 0 (unlimited) otherwise the text could get
 	-- truncated if the previous font size's bounding box was smaller. Then,
@@ -124,15 +129,24 @@ end
 
 function sc.ui:setFontFamily(val)
 	sc.sv.font.family = val
-	sc.ui:setLabel()
+	sc.ui:updateLabel()
 end
 
 function sc.ui:setFontSize(val)
 	sc.sv.font.size = val
-	sc.ui:setLabel()
+	sc.ui:updateLabel()
 end
 
 function sc.ui:setFontStyle(val)
 	sc.sv.font.style = val
-	sc.ui:setLabel()
+	sc.ui:updateLabel()
+end
+
+function sc.ui:setFontColor(r, g, b, a)
+
+	local color = {r = r, g = g, b = b, a = a }
+
+	sc.sv.font.color = color;
+	sc.ui:updateLabel()
+
 end

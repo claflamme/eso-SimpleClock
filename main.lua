@@ -23,8 +23,9 @@ sc.config = {
 		textAlign = 'Center',
 		font = {
 			family = 'Univers 67',
-			size = 16,
-			style = 'soft-shadow-thin'
+			size = 20,
+			style = 'soft-shadow-thin',
+			color = {r = 1, g = 1, b = 1, a = 1}
 		}
 	}
 }
@@ -113,18 +114,4 @@ end
 --- Loads settings from saved variables.
 function sc:loadSavedVariables()
 	sc.sv = ZO_SavedVars:NewAccountWide(sc.config.svName, 1, 'SimpleClock', sc.config.svDefaults)
-end
-
-function table.keys(table)
-
-	local keys = {}
-	local n = 0
-
-	for key in pairs(table) do
-		keys[n] = key
-		n = n + 1
-	end
-
-	return keys
-
 end

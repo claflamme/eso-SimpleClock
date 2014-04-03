@@ -10,5 +10,5 @@ lib/LibAddonMenu-1.0.lua
 lib/LibMediaProvider-1.0.lua
 Main.lua
 Interface.lua
-Menu.lua
 Events.lua
+Menu.lua
