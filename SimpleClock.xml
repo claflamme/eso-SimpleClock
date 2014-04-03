@@ -3,7 +3,7 @@
 		<TopLevelControl name="SimpleClock" mouseEnabled="true" movable="true" virtual="true">
 
 			<OnUpdate>
-				sc:updateLocalTime()
+				sc.ui:updateLabel(true)
 			</OnUpdate>
 
 			<OnMoveStop>

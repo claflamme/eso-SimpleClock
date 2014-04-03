@@ -1,7 +1,7 @@
 ## Title: SimpleClock
 ## APIVersion: 100003
 ## SavedVariables: SimpleClock_SavedVariables
-## Version: 0.3.0
+## Version: 0.3.1
 ## OptionalDependsOn: LibAddonMenu-1.0 LibMediaProvider-1.0
 
 SimpleClock.xml
