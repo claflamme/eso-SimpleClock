@@ -1,14 +1,14 @@
 function buildControlPanel()
 
-	sc.menuId = sc.menu:CreateControlPanel('scConfig', 'SimpleClock')
+	sc.menuId = LAM:CreateControlPanel('scConfig', 'SimpleClock')
 
 	-- -----------------------------------------------------------------------------
 	-- Visibility
 	-- -----------------------------------------------------------------------------
-	sc.menu:AddHeader(sc.menuId, 'scHeaderVisibility', 'Visibility')
+	LAM:AddHeader(sc.menuId, 'scHeaderVisibility', 'Visibility')
 
 	-- Hide with overlay
-	sc.menu:AddCheckbox(
+	LAM:AddCheckbox(
 		sc.menuId,
 		'scConfigChkbox_HideWithOverlay',
 		'Hide when viewing menus',
@@ -20,10 +20,10 @@ function buildControlPanel()
 	-- -----------------------------------------------------------------------------
 	-- Time Format
 	-- -----------------------------------------------------------------------------
-	sc.menu:AddHeader(sc.menuId, 'scHeaderTimeFormat', 'Time Format')
+	LAM:AddHeader(sc.menuId, 'scHeaderTimeFormat', 'Time Format')
 
 	-- Time Format dropdown (24hr vs. 12hr)
-	sc.menu:AddCheckbox(
+	LAM:AddCheckbox(
 		sc.menuId,
 		'scConfigChkbox_24HourTime',
 		'24 Hour (Military) Time',
@@ -33,7 +33,7 @@ function buildControlPanel()
 	)
 
 	-- Show/Hide meridiem
-	sc.menu:AddCheckbox(
+	LAM:AddCheckbox(
 		sc.menuId,
 		'scConfigChkbox_VisibleMeridiem',
 		'Hide Meridiem Indicator',
@@ -43,7 +43,7 @@ function buildControlPanel()
 	)
 
 	-- Use lowercase AM/PM
-	sc.menu:AddCheckbox(
+	LAM:AddCheckbox(
 		sc.menuId,
 		'scConfigChkbox_LowercaseMeridiem',
 		'Lowercase Meridiem Indicator',
@@ -53,7 +53,7 @@ function buildControlPanel()
 	)
 
 	-- Hide dots in AM/PM
-	sc.menu:AddCheckbox(
+	LAM:AddCheckbox(
 		sc.menuId,
 		'scConfigChkbox_NoDotsMeridiem',
 		'Hide Dots in Meridiem Indicator',
@@ -65,10 +65,10 @@ function buildControlPanel()
 	-- -----------------------------------------------------------------------------
 	-- Positioning
 	-- -----------------------------------------------------------------------------
-	sc.menu:AddHeader(sc.menuId, 'scHeaderPositioning', 'Positioning')
+	LAM:AddHeader(sc.menuId, 'scHeaderPositioning', 'Positioning')
 
 	-- Text alignment
-	sc.menu:AddDropdown(
+	LAM:AddDropdown(
 		sc.menuId,
 		'scConfigDrpdwn_TextAlign',
 		'Text Alignment',
@@ -81,10 +81,10 @@ function buildControlPanel()
 	-- -----------------------------------------------------------------------------
 	-- Font
 	-- -----------------------------------------------------------------------------
-	sc.menu:AddHeader(sc.menuId, 'scHeaderFont', 'Font')
+	LAM:AddHeader(sc.menuId, 'scHeaderFont', 'Font')
 
 	-- Font family
-	sc.menu:AddDropdown(
+	LAM:AddDropdown(
 		sc.menuId,
 		'scConfigDrpdwn_FontFamily',
 		'Family',
@@ -95,7 +95,7 @@ function buildControlPanel()
 	)
 
 	-- Font size
-	sc.menu:AddSlider(
+	LAM:AddSlider(
 		sc.menuId,
 		'scConfigDrpdwn_FontSize',
 		'Size',
@@ -108,7 +108,7 @@ function buildControlPanel()
 	)
 
 	-- Font style
-	sc.menu:AddDropdown(
+	LAM:AddDropdown(
 		sc.menuId,
 		'scConfigDrpdwn_FontStyle',
 		'Style',
@@ -119,7 +119,7 @@ function buildControlPanel()
 	)
 
 	-- Font color
-	sc.menu:AddColorPicker(
+	LAM:AddColorPicker(
 		sc.menuId,
 		'scConfigDrpdwn_FontColor',
 		'Color',

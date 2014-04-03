@@ -4,7 +4,7 @@ sc = {}
 sc.events, sc.sv, sc.bufferTable = {}, {}, {}
 
 --- Control panel menu
-sc.menu = LibStub:GetLibrary('LibAddonMenu-1.0')
+LAM = LibStub:GetLibrary('LibAddonMenu-1.0')
 LMP = LibStub:GetLibrary("LibMediaProvider-1.0")
 
 --- Main config settings
