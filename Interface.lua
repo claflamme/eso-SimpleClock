@@ -16,10 +16,8 @@ function sc.ui:create()
 
 	local x = sc.sv.offsetX
 	local y = sc.sv.offsetY
-	local scale = sc.sv.scale
 
 	self.clock:SetAnchor(CENTER, GuiRoot, TOPLEFT, x, y)
-	self.clock:SetScale(scale)
 
 	-- Allow the clock to go outside the screen's boundaries
 	self.clock:SetClampedToScreen(false)

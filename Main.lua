@@ -27,29 +27,6 @@ sc.config = {
 	svName = 'SimpleClock_SavedVariables'
 }
 
-sc.defaults = {
-	offsetX = 150,
-	offsetY = 50,
-	scale = 1.0,
-	use24Hour = false,
-	lowercaseMeridiem = false,
-	noDotsMeridiem = false,
-	hideMeridiem = false,
-	hideWithOverlay = false,
-	textAlign = 'Center',
-	font = {
-		family = 'Univers 67',
-		size = 20,
-		style = 'soft-shadow-thin',
-		color = {
-			r = 1,
-			g = 1,
-			b = 1,
-			a = 1
-		}
-	}
-}
-
 --- Control panel menu
 LAM = LibStub:GetLibrary('LibAddonMenu-1.0')
 LMP = LibStub:GetLibrary("LibMediaProvider-1.0")

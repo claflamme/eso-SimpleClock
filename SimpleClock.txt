@@ -9,6 +9,7 @@ lib/LibStub.lua
 lib/LibAddonMenu-1.0.lua
 lib/LibMediaProvider-1.0.lua
 Main.lua
+Defaults.lua
 Interface.lua
 Events.lua
 Menu.lua
