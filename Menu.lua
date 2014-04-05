@@ -14,7 +14,7 @@ function buildControlPanel()
 		'Hide when viewing menus',
 		'Hides the clock when viewing inventory or similar screens.',
 		function() return sc.sv.hideWithOverlay end,
-		sc.ui.toggleHideWithOverlay
+		function() sc.ui.toggleSetting('hideWithOverlay') end
 	)
 
 	-- -----------------------------------------------------------------------------
@@ -29,7 +29,7 @@ function buildControlPanel()
 		'24 Hour (Military) Time',
 		'Choose whether to use 24hr time (00:30) or 12hr time (12:30AM).',
 		function() return sc.sv.use24Hour end,
-		sc.ui.toggleUse24Hour
+		function() sc.ui.toggleSetting('use24Hour') end
 	)
 
 	-- Show/Hide meridiem
@@ -39,7 +39,7 @@ function buildControlPanel()
 		'Hide Meridiem Indicator',
 		'Disable the A.M./P.M. text.',
 		function() return sc.sv.hideMeridiem end,
-		sc.ui.toggleHideMeridiem
+		function() sc.ui.toggleSetting('hideMeridiem') end
 	)
 
 	-- Use lowercase AM/PM
@@ -49,7 +49,7 @@ function buildControlPanel()
 		'Lowercase Meridiem Indicator',
 		'Have the A.M./P.M. text display in lowercase.',
 		function() return sc.sv.lowercaseMeridiem end,
-		sc.ui.toggleLowercaseMeridiem
+		function() sc.ui.toggleSetting('lowercaseMeridiem') end
 	)
 
 	-- Hide dots in AM/PM
@@ -59,7 +59,7 @@ function buildControlPanel()
 		'Hide Dots in Meridiem Indicator',
 		'Hide the dots in A.M./P.M.',
 		function() return sc.sv.noDotsMeridiem end,
-		sc.ui.toggleNoDotsMeridiem
+		function() sc.ui.toggleSetting('noDotsMeridiem') end
 	)
 
 	-- -----------------------------------------------------------------------------
@@ -90,8 +90,8 @@ function buildControlPanel()
 		'Family',
 		'The font family used to display the clock.',
 		LMP:List('font'),
-		function() return sc.sv.font.family end,
-		function(val) sc.ui:setFontFamily(val) end
+		function() return sc.sv.fontFamily end,
+		function(val) sc.ui.updateSetting('fontFamily', val) end
 	)
 
 	-- Font size
@@ -103,8 +103,8 @@ function buildControlPanel()
 		12,
 		48,
 		1,
-		function() return sc.sv.font.size end,
-		function(val) sc.ui:setFontSize(val) end
+		function() return sc.sv.fontSize end,
+		function(val) sc.ui.updateSetting('fontSize', val) end
 	)
 
 	-- Font style
@@ -114,8 +114,8 @@ function buildControlPanel()
 		'Style',
 		'Additional borders and shadows for the text.',
 		sc.ui.styles,
-		function() return sc.sv.font.style end,
-		function(val) sc.ui:setFontStyle(val) end
+		function() return sc.sv.fontStyle end,
+		function(val) sc.ui.updateSetting('fontStyle', val) end
 	)
 
 	-- Font color
@@ -124,8 +124,8 @@ function buildControlPanel()
 		'scConfigDrpdwn_FontColor',
 		'Color',
 		'Set the colour of the text.',
-		function() return sc.sv.font.color.r, sc.sv.font.color.g, sc.sv.font.color.b, sc.sv.font.color.a end,
-		function(r, g, b, a) sc.ui:setFontColor(r, g, b, a) end
+		function() return sc.sv.fontColor.r, sc.sv.fontColor.g, sc.sv.fontColor.b, sc.sv.fontColor.a end,
+		function(r, g, b, a) sc.ui.updateSetting('fontColor', {r = r, g = g, b = b, a = a}) end
 	)
 
 end

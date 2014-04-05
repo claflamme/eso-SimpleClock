@@ -25,15 +25,13 @@ sc.defaults = {
 	hideMeridiem = false,
 	hideWithOverlay = false,
 	align = 'Center',
-	font = {
-		family = 'Univers 67',
-		size = 20,
-		style = 'soft-shadow-thin',
-		color = {
-			r = 1,
-			g = 1,
-			b = 1,
-			a = 1
-		}
+	fontFamily = 'Univers 67',
+	fontSize = 20,
+	fontStyle = 'soft-shadow-thin',
+	fontColor = {
+		r = 1,
+		g = 1,
+		b = 1,
+		a = 1
 	}
 }
