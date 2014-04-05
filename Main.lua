@@ -68,8 +68,8 @@ end
 -- -----------------------------------------------------------------------------
 function sc:savePositions()
 
-	local x, y     = SimpleClock:GetCenter()
-	local half     = SimpleClock:GetWidth() / 2
+	local x, y   = sc.ui.clock:GetCenter()
+	local half   = sc.ui.clock:GetWidth() / 2
 	local posMap = { Left = x - half, Right = x + half, Center = x }
 
 	sc.sv.offset.x = posMap[sc.sv.align]
