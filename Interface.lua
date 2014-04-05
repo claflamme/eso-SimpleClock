@@ -14,8 +14,8 @@ function sc.ui:create()
 
 	self.clock = CreateControlFromVirtual('SimpleClock', GuiRoot, 'SimpleClock')
 
-	local x = sc.sv.offsetX
-	local y = sc.sv.offsetY
+	local x = sc.sv.offset.x
+	local y = sc.sv.offset.y
 
 	self.clock:SetAnchor(CENTER, GuiRoot, TOPLEFT, x, y)
 

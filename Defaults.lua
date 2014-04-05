@@ -5,8 +5,7 @@
 -- =============================================================================
 
 ---
--- @field offsetX            Horizontal position offset
--- @field offsetY            Vertical position offset
+-- @field offset             X and Y offsets for positioning.
 -- @field use24Hour          Whether or not to use 24 hour time
 -- @field lowercaseMeridiem  Use lowercased AM/PM indicator
 -- @field noDotsMeridiem     Remove dots from AM/PM
@@ -16,8 +15,10 @@
 -- @field font               Various settings for font display
 -- -----------------------------------------------------------------------------
 sc.defaults = {
-	offsetX = 150,
-	offsetY = 50,
+	offset = {
+		x = 150,
+		y = 50
+	},
 	use24Hour = false,
 	lowercaseMeridiem = false,
 	noDotsMeridiem = false,

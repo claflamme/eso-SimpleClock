@@ -4,6 +4,10 @@
 -- Bootstrapping happens in Events.lua, in the EVENT_ADD_ON_LOADED function.
 -- =============================================================================
 
+-- Load libraries
+LAM = LibStub:GetLibrary('LibAddonMenu-1.0')
+LMP = LibStub:GetLibrary('LibMediaProvider-1.0')
+
 ---
 -- Main namespace for the addon.
 --
@@ -26,10 +30,6 @@ sc.config = {
 	name   = 'SimpleClock',
 	svName = 'SimpleClock_SavedVariables'
 }
-
--- Load libraries
-LAM = LibStub:GetLibrary('LibAddonMenu-1.0')
-LMP = LibStub:GetLibrary("LibMediaProvider-1.0")
 
 ---
 -- Basic event buffering, from http://wiki.esoui.com/Event_%26_Update_Buffering
@@ -68,8 +68,8 @@ function sc:savePositions()
 
 	local x, y = SimpleClock:GetCenter()
 
-	sc.sv.offsetX = x
-	sc.sv.offsetY = y
+	sc.sv.offset.x = x
+	sc.sv.offset.y = y
 
 end
 
