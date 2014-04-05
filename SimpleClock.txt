@@ -1,7 +1,7 @@
 ## Title: SimpleClock
 ## APIVersion: 100003
 ## SavedVariables: SimpleClock_SavedVariables
-## Version: 0.3.2
+## Version: 1.0.0
 ## OptionalDependsOn: LibAddonMenu-1.0 LibMediaProvider-1.0
 
 SimpleClock.xml
@@ -9,6 +9,7 @@ lib/LibStub.lua
 lib/LibAddonMenu-1.0.lua
 lib/LibMediaProvider-1.0.lua
 Main.lua
+Defaults.lua
 Interface.lua
 Events.lua
 Menu.lua

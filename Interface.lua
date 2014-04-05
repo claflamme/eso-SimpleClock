@@ -1,5 +1,4 @@
 sc.ui = {
-	wm = GetWindowManager(),
 	styles = {
 		'normal',
 		'outline',
@@ -14,18 +13,11 @@ function sc.ui:create()
 
 	self.clock = CreateControlFromVirtual('SimpleClock', GuiRoot, 'SimpleClock')
 
-	local x = sc.sv.offsetX
-	local y = sc.sv.offsetY
-	local scale = sc.sv.scale
-
-	self.clock:SetAnchor(CENTER, GuiRoot, TOPLEFT, x, y)
-	self.clock:SetScale(scale)
-
 	-- Allow the clock to go outside the screen's boundaries
 	self.clock:SetClampedToScreen(false)
 
 	-- Load the text alignment setting
-	sc.ui:setTextAlign(sc.sv.textAlign)
+	sc.ui:setAlignment(sc.sv.align)
 
 	sc.ui:updateLabel()
 
@@ -39,36 +31,12 @@ function sc.ui:hide()
 	SimpleClock:SetAlpha(0)
 end
 
--- -----------------------------------------------------------------------------
--- Toggles for control panel options
--- =============================================================================
-function sc.ui:toggleUse24Hour()
-	sc.sv.use24Hour = not sc.sv.use24Hour
+function sc.ui.toggleSetting(settingName)
+
+	sc.sv[settingName] = not sc.sv[settingName]
 	sc.ui:updateLabel()
-end
 
-function sc.ui:toggleLowercaseMeridiem()
-	sc.sv.lowercaseMeridiem = not sc.sv.lowercaseMeridiem
-	sc.ui:updateLabel()
-end
-
-function sc.ui:toggleHideMeridiem()
-	sc.sv.hideMeridiem = not sc.sv.hideMeridiem
-	sc.ui:updateLabel()
-end
-
-function sc.ui:toggleNoDotsMeridiem()
-	sc.sv.noDotsMeridiem = not sc.sv.noDotsMeridiem
-	sc.ui:updateLabel()
-end
-
----
--- Toggles whether or not to hide the clock when in viewing screens like
--- inventory, conversation, settings, main menu, etc.
-function sc.ui:toggleHideWithOverlay()
-
-	sc.sv.hideWithOverlay = not sc.sv.hideWithOverlay
-
+	-- If the setting was hideWithOverlay, we need to show or hide the clock.
 	if (sc.sv.hideWithOverlay == true) then
 		sc.ui:hide()
 	else
@@ -77,24 +45,40 @@ function sc.ui:toggleHideWithOverlay()
 
 end
 
-function sc.ui:setTextAlign(val)
+function sc.ui.updateSetting(settingName, settingVal)
+
+	sc.sv[settingName] = settingVal
+	sc.ui:updateLabel()
+
+end
+
+function sc.ui:setAlignment(val)
+
+	local x = sc.sv.offset.x
+	local y = sc.sv.offset.y
 
 	local alignMap = {
-		Left   = TEXT_ALIGN_LEFT,
-		Right  = TEXT_ALIGN_RIGHT,
-		Center = TEXT_ALIGN_CENTER
+		Left   = { text = TEXT_ALIGN_LEFT,   anchor = LEFT },
+		Right  = { text = TEXT_ALIGN_RIGHT,  anchor = RIGHT },
+		Center = { text = TEXT_ALIGN_CENTER, anchor = CENTER }
 	}
 
-	SimpleClockLabel:SetHorizontalAlignment(alignMap[val])
+	SimpleClockLabel:SetHorizontalAlignment(alignMap[val].text)
 
-	sc.sv.textAlign = val
+	-- Need to clear anchors, since SetAnchor() will just keep adding new ones.
+	self.clock:ClearAnchors();
+	self.clock:SetAnchor(alignMap[val].anchor, GuiRoot, TOPLEFT, x, y)
+
+	sc.sv.align = val
+
+	sc:savePositions()
 
 end
 
 function sc.ui:getFontString()
 
-	local fontPath = LMP:Fetch('font', sc.sv.font.family)
-	local fontString = string.format('%s|%u|%s', fontPath, sc.sv.font.size, sc.sv.font.style)
+	local fontPath = LMP:Fetch('font', sc.sv.fontFamily)
+	local fontString = string.format('%s|%u|%s', fontPath, sc.sv.fontSize, sc.sv.fontStyle)
 
 	return fontString
 
@@ -116,7 +100,7 @@ function sc.ui:updateLabel(buffered)
 
 	SimpleClockLabel:SetText(sc:getTimeString())
 
-	local color = sc.sv.font.color
+	local color = sc.sv.fontColor
 
 	-- Update the label's font and colour, and then...
 	SimpleClockLabel:SetFont(sc.ui:getFontString())
@@ -130,29 +114,5 @@ function sc.ui:updateLabel(buffered)
 
 	-- NOW set the TopLevelControl to the new dimensions.
 	self.clock:SetDimensions(SimpleClockLabel:GetTextDimensions())
-
-end
-
-function sc.ui:setFontFamily(val)
-	sc.sv.font.family = val
-	sc.ui:updateLabel()
-end
-
-function sc.ui:setFontSize(val)
-	sc.sv.font.size = val
-	sc.ui:updateLabel()
-end
-
-function sc.ui:setFontStyle(val)
-	sc.sv.font.style = val
-	sc.ui:updateLabel()
-end
-
-function sc.ui:setFontColor(r, g, b, a)
-
-	local color = {r = r, g = g, b = b, a = a }
-
-	sc.sv.font.color = color;
-	sc.ui:updateLabel()
 
 end
