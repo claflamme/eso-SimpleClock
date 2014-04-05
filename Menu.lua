@@ -74,8 +74,8 @@ function buildControlPanel()
 		'Text Alignment',
 		'Which way the numbers on the clock should expand from.',
 		{'Left', 'Right', 'Center'},
-		function() return sc.sv.textAlign end,
-		function(val) sc.ui:setTextAlign(val) end
+		function() return sc.sv.align end,
+		function(val) sc.ui:setAlignment(val) end
 	)
 
 	-- -----------------------------------------------------------------------------

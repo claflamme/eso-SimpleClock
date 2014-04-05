@@ -14,16 +14,11 @@ function sc.ui:create()
 
 	self.clock = CreateControlFromVirtual('SimpleClock', GuiRoot, 'SimpleClock')
 
-	local x = sc.sv.offset.x
-	local y = sc.sv.offset.y
-
-	self.clock:SetAnchor(CENTER, GuiRoot, TOPLEFT, x, y)
-
 	-- Allow the clock to go outside the screen's boundaries
 	self.clock:SetClampedToScreen(false)
 
 	-- Load the text alignment setting
-	sc.ui:setTextAlign(sc.sv.textAlign)
+	sc.ui:setAlignment(sc.sv.align)
 
 	sc.ui:updateLabel()
 
@@ -75,17 +70,26 @@ function sc.ui:toggleHideWithOverlay()
 
 end
 
-function sc.ui:setTextAlign(val)
+function sc.ui:setAlignment(val)
+
+	local x = sc.sv.offset.x
+	local y = sc.sv.offset.y
 
 	local alignMap = {
-		Left   = TEXT_ALIGN_LEFT,
-		Right  = TEXT_ALIGN_RIGHT,
-		Center = TEXT_ALIGN_CENTER
+		Left   = { text = TEXT_ALIGN_LEFT,   anchor = LEFT },
+		Right  = { text = TEXT_ALIGN_RIGHT,  anchor = RIGHT },
+		Center = { text = TEXT_ALIGN_CENTER, anchor = CENTER }
 	}
 
-	SimpleClockLabel:SetHorizontalAlignment(alignMap[val])
+	SimpleClockLabel:SetHorizontalAlignment(alignMap[val].text)
 
-	sc.sv.textAlign = val
+	-- Need to clear anchors, since SetAnchor() will just keep adding new ones.
+	self.clock:ClearAnchors();
+	self.clock:SetAnchor(alignMap[val].anchor, GuiRoot, TOPLEFT, x, y)
+
+	sc.sv.align = val
+
+	sc:savePositions()
 
 end
 

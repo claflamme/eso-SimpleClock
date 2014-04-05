@@ -63,12 +63,16 @@ function sc:bufferReached(key, seconds)
 
 end
 
---- Updates the saved variables for the clock's position.
+---
+-- Updates the saved variables for the clock's position.
+-- -----------------------------------------------------------------------------
 function sc:savePositions()
 
-	local x, y = SimpleClock:GetCenter()
+	local x, y     = SimpleClock:GetCenter()
+	local half     = SimpleClock:GetWidth() / 2
+	local posMap = { Left = x - half, Right = x + half, Center = x }
 
-	sc.sv.offset.x = x
+	sc.sv.offset.x = posMap[sc.sv.align]
 	sc.sv.offset.y = y
 
 end

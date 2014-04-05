@@ -11,7 +11,7 @@
 -- @field noDotsMeridiem     Remove dots from AM/PM
 -- @field hideMeridiem       Hide AM/PM altogether
 -- @field hideWithOverlay    Hide clock when viewing menu screens
--- @field textAlign          Alignment of the clock text
+-- @field align              Alignment of the clock text
 -- @field font               Various settings for font display
 -- -----------------------------------------------------------------------------
 sc.defaults = {
@@ -24,7 +24,7 @@ sc.defaults = {
 	noDotsMeridiem = false,
 	hideMeridiem = false,
 	hideWithOverlay = false,
-	textAlign = 'Center',
+	align = 'Center',
 	font = {
 		family = 'Univers 67',
 		size = 20,
